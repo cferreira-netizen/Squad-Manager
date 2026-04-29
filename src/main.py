@@ -43,4 +43,8 @@ def init_state():
 
 # Helper utilities 
 
-POSITIONS = 
+POSITIONS = ["GK", "CB","LB", "RB", "CDM","CM", "CAM", "LW", "RW", "ST"]
+
+FITNESS_LEVELS = ["🟢 Fit", "🟡 Slight knock", "🔴 Injured", "⚪ Unknown"]
+
+def get_squad_df():
