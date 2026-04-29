@@ -27,3 +27,16 @@ def load_json(filename: str, default):
     return default
 
 def save_json(filename: str, data):
+    """Save JSON to disk."""
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, "w") as f:
+        json.dump(data, f, indent=2, default=str)
+
+# Session State
+
+def init_state():
+    """Initialize session state variables."""
+    if "squad" not in st.session_state:
+        st.session_state.squad = load_json(SQUAD_FILE, [])
+    if "matches" not in st.session_state:
+        st.session_state.matches = load_json(MATCHES_FILE, [])
