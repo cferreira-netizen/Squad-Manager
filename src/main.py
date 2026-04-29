@@ -40,3 +40,7 @@ def init_state():
         st.session_state.squad = load_json(SQUAD_FILE, [])
     if "matches" not in st.session_state:
         st.session_state.matches = load_json(MATCHES_FILE, [])
+
+# Helper utilities 
+
+POSITIONS = 
