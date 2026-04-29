@@ -81,5 +81,14 @@ def calculate_form(player_name: str):
 # Page: Squad Management
 
 def page_squad():
-    st.header
+    st.header ("👥 Squad")
 
+    # Add Player
+    with st.expander("➕ Add new player", expanded=False):
+        with st.form("add_player_form", clear_on_submit=True):
+            col1, col2 = st.columns(2)
+            name = col1.text_input("player name")
+            postion = col2.selectbox("poistion", POSITIONS)
+            fitness = col1.selectbox("Fitness", FITNESS_LEVELS)
+            
+            
