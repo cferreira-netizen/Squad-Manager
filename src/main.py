@@ -91,5 +91,10 @@ def page_squad():
             postion = col2.selectbox("poistion", POSITIONS)
             fitness = col1.selectbox("Fitness", FITNESS_LEVELS)
             availability = col2.checkbox("Available for selection", value=True)
-            notes = st.text_area("notes (injury details, etc.)")
+            notes = st.text_area("Notes (optional)", height=60)
+            submitted = st.form_submit_button("Add Player")
+            if submitted:
+                if not name.strip():
+                    st.warning("Please enter a player name.")
+                elif any(p["name"].lower() == name.strip().lower() for p in st.session_state.squad):
             
