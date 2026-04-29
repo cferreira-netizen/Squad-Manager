@@ -49,5 +49,6 @@ FITNESS_LEVELS = ["🟢 Fit", "🟡 Slight knock", "🔴 Injured", "⚪ Unknown"
 
 def get_squad_df():
     """Convert squad list to a DataFrame."""
-    if
-    return pd.DataFrame(st.session_state.squad)
+    if st.session_state.squad:
+        return pd.DataFrame(st.session_state.squad)
+    return pd.DataFrame(columns=["name", "position", "fitness", "availability", "notes", "form"])
