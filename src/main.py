@@ -90,5 +90,6 @@ def page_squad():
             name = col1.text_input("player name")
             postion = col2.selectbox("poistion", POSITIONS)
             fitness = col1.selectbox("Fitness", FITNESS_LEVELS)
-            availability = col2.checkbox("Available for next match", value=True)
+            availability = col2.checkbox("Available for selection", value=True)
+            notes = st.text_area("notes (injury details, etc.)")
             
