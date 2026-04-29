@@ -54,4 +54,6 @@ def get_squad_df():
     return pd.DataFrame(columns=["name", "position", "fitness", "availability", "notes", "form"])
 
 def calculate_form(player_name: str):
+    """Calculate player form based on recent matches."""
+    score = 5.o # Base score
     
