@@ -97,4 +97,14 @@ def page_squad():
                 if not name.strip():
                     st.warning("Please enter a player name.")
                 elif any(p["name"].lower() == name.strip().lower() for p in st.session_state.squad):
+                    st.warning("Player with this name already exists.")
+                else:
+                    st.session_state.squad.append({
+                        "name": name.strip(),
+                        "position": postion,
+                        "fitness": fitness,
+                        "availability": availability,
+                        "notes": notes.strip(),
+                        form: 5.0
+                    })
             
