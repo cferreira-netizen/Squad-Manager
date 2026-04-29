@@ -68,5 +68,5 @@ def calculate_form(player_name: str):
                 pts += 3
             elif match.get("result") == "D":
                 pts += 1
-            if player_name in match.get("squad", []):
-                pts += 1
+            goals = match.get("scorers",{}).get(player_name, 0)
+            assists = match.get("assisters",{}).get(player_name, 0)
