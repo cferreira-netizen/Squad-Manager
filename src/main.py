@@ -73,6 +73,13 @@ def calculate_form(player_name: str):
             pts += goals * 1.5 + assists * 0.75
             total += pts
         
-        # Normalize to 0-10
-        max_possible = len(revelant) * (3 + 3 * 1.5 + 3 * 0.75) # Max points per match
+    # Normalize to 0-10
+    max_possible = len(revelant) * (3 + 3 * 1.5 + 3 * 0.75)
+    score = min(10.0, round((total / max(max_possible, 1 )) * 10, 1))
+    return score
+
+# Page: Squad Management
+
+def page_squad():
+    st.header
 
