@@ -70,3 +70,9 @@ def calculate_form(player_name: str):
                 pts += 1
             goals = match.get("scorers",{}).get(player_name, 0)
             assists = match.get("assisters",{}).get(player_name, 0)
+            pts += goals * 1.5 + assists * 0.75
+            total += pts
+        
+        # Normalize to 0-10
+        
+
