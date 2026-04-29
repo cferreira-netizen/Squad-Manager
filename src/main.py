@@ -52,3 +52,6 @@ def get_squad_df():
     if st.session_state.squad:
         return pd.DataFrame(st.session_state.squad)
     return pd.DataFrame(columns=["name", "position", "fitness", "availability", "notes", "form"])
+
+def calculate_form(player_name: str):
+    
