@@ -55,5 +55,18 @@ def get_squad_df():
 
 def calculate_form(player_name: str):
     """Calculate player form based on recent matches."""
-    score = 5.o # Base score
-    
+    score = 5.0 # Base score
+    revelant = [m for m in st.session_state.matches if player_name in m.get("squad",[])][-5:]
+    if not revelant:
+        return score
+    total = 0.0
+    for match in revelant:
+        pts = 0
+        for match in revelant:
+            pts = 0
+            if match["result"] == "W":
+                pts += 3
+            elif match["result"] == "D":
+                pts += 1
+            if player_name in match.get("squad", []):
+                pts += 1
