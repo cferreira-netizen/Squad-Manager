@@ -48,3 +48,6 @@ POSITIONS = ["GK", "CB","LB", "RB", "CDM","CM", "CAM", "LW", "RW", "ST"]
 FITNESS_LEVELS = ["🟢 Fit", "🟡 Slight knock", "🔴 Injured", "⚪ Unknown"]
 
 def get_squad_df():
+    """Convert squad list to a DataFrame."""
+    if
+    return pd.DataFrame(st.session_state.squad)
