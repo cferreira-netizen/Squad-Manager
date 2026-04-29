@@ -74,5 +74,5 @@ def calculate_form(player_name: str):
             total += pts
         
         # Normalize to 0-10
-        
+        max_possible = len(revelant) * (3 + 3 * 1.5 + 3 * 0.75) # Max points per match
 
