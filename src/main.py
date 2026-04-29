@@ -64,9 +64,9 @@ def calculate_form(player_name: str):
         pts = 0
         for match in revelant:
             pts = 0
-            if match["result"] == "W":
+            if match.get("result") == "W":
                 pts += 3
-            elif match["result"] == "D":
+            elif match.get("result") == "D":
                 pts += 1
             if player_name in match.get("squad", []):
                 pts += 1
