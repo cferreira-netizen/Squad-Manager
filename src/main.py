@@ -16,3 +16,14 @@ def get_data_path(filename: str) -> str:
 # DATA Persistence
 
 SQUAD_FILE = get_data_path("squad.json")
+MATCHES_FILE = get_data_path("matches.json")
+
+def load_json(filename: str, default):
+    """Load JSON from disk returning default if file dosen't exist."""
+    
+    if os.path.exists(filename):
+        with open(filename, "r") as f:
+            return json.load(f)
+    return default
+
+def save_json(filename: str, data):
