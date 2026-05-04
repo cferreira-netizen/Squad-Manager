@@ -113,5 +113,8 @@ def page_squad():
         df = get_squad_df()
         if df.empty:
             st.info("No players yet - add some above")
+            return
+        
+        
                     
             
