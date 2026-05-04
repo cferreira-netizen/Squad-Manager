@@ -167,6 +167,7 @@ def page_squad():
                 form = calculate_form(p["name"])
                 fit_bonus = {"🟢 Fit": 2.0, "🟡 Slight knock": 0.5, "🔴 Injured": -5.0, "⚪ Unknown": 0.0}
                 
+                
                              
                     
             
