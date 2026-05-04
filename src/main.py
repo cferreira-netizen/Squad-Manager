@@ -135,7 +135,10 @@ def page_squad():
                     st.session_state.squad[i].update({
                         "position": new_pos,
                         "fitness": new_fit,
-                        "availability"
+                        "availability": new_avail,
+                        "notes": new_notes,
+                        "form": form_score,
                     })
+                    save_json(SQUAD_FILE, st.session_state.squad)
                     
             
