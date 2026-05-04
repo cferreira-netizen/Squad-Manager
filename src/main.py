@@ -131,6 +131,11 @@ def page_squad():
                 st.progress(form_score / 10)
 
                 c1, c2 = st.columns(2)
-                if c1.button("")
+                if c1.button("💾 Save", key=f"save_{i}"):
+                    st.session_state.squad[i].update({
+                        "position": new_pos,
+                        "fitness": new_fit,
+                        "availability"
+                    })
                     
             
