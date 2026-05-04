@@ -148,5 +148,19 @@ def page_squad():
                     st.rerun
 
     # Page: Pick Lineup
+    def page_lineup():
+        st.header("📋 Pick Lineup")
+
+        available = [p for p in st.session_state.squad if p.get("availability")]
+        if len(available) <11:
+            st.warning(f"You only have {len(available)} available players — need at least 11.")
+            return
+        
+        st.markdown("Select your starting 11 from available players:")
+
+        # Lineup recommender
+
+        with st.expander("🤖 Who should start? (recommender)", expanded=false):
+            
                     
             
