@@ -115,6 +115,10 @@ def page_squad():
             st.info("No players yet - add some above")
             return
         
-        
+
+        # Display
+
+        st.subheader(f"Roster ({len(df)} players)")
+        for i, player in enumerate(st.session_state.squad):
                     
             
