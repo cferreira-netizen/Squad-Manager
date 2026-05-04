@@ -170,7 +170,8 @@ def page_squad():
                 scored.append({**p, "score": round(total,2)})
                 scored.sort(key=lambda x: x["score"], reverse=True)
                 rec_df=pd.DataFrame(scored)[["name", "position", "fitness", "score"]]
-                red_df.columns = ["Player", "Position", "Fitness", "Score"]
+                red_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
+                st.dataframe(rec_df, use_container_width=True, hide_index=True)
                 
                              
                     
