@@ -120,5 +120,8 @@ def page_squad():
 
         st.subheader(f"Roster ({len(df)} players)")
         for i, player in enumerate(st.session_state.squad):
+            with st.expander(f"{player['name']}  .   {player['postion']}   .   {player['fitness']}"):
+                col1, col2, col3 = st.columns([2, 2, 1])
+                new_pos = col1.selectbox("position", POSITIONS, index=POSITIONS.index)
                     
             
