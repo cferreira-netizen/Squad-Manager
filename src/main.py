@@ -122,6 +122,7 @@ def page_squad():
         for i, player in enumerate(st.session_state.squad):
             with st.expander(f"{player['name']}  .   {player['postion']}   .   {player['fitness']}"):
                 col1, col2, col3 = st.columns([2, 2, 1])
-                new_pos = col1.selectbox("position", POSITIONS, index=POSITIONS.index)
+                new_pos = col1.selectbox("position", POSITIONS, index=POSITIONS.index(player["position"]), key=f"pos_{i}")
+                new_fit = col2.selectbox("")
                     
             
