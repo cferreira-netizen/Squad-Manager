@@ -167,7 +167,7 @@ def page_squad():
                 form = calculate_form(p["name"])
                 fit_bonus = {"🟢 Fit": 2.0, "🟡 Slight knock": 0.5, "🔴 Injured": -5.0, "⚪ Unknown": 0.0}
                 total = form + fit_bonus.get(p["fitness"], 0)
-                scored.append({**p, "score"})
+                scored.append({**p, "score": round(total,2)})
                 
                              
                     
