@@ -161,6 +161,12 @@ def page_squad():
         # Lineup recommender
 
         with st.expander("🤖 Who should start? (recommender)", expanded=false):
-            
+            st.caption("Players ranked by form score, position, and fitness.")
+            scored = []
+            for p in available:
+                form = calculate_form(p["name"])
+                fit_bonus = {"🟢 Fit": 2.0, "🟡 Slight knock": 0.5, "🔴 Injured": -5.0, "⚪ Unknown": 0.0}
+                
+                             
                     
             
