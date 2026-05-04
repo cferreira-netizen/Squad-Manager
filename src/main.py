@@ -107,6 +107,11 @@ def page_squad():
                         "notes": notes.strip(),
                         form: 5.0
                     })
-                    save_json()
+                    save_json(SQUAD_FILE, st.session_state.squad)
+                    st.success(f"ADDED {name.strip()}!")
+                    st.rerun()
+        df = get_squad_df()
+        if df.empty:
+            st.info("No players yet - add some above")
                     
             
