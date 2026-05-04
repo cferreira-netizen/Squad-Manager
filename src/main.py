@@ -123,6 +123,7 @@ def page_squad():
             with st.expander(f"{player['name']}  .   {player['postion']}   .   {player['fitness']}"):
                 col1, col2, col3 = st.columns([2, 2, 1])
                 new_pos = col1.selectbox("position", POSITIONS, index=POSITIONS.index(player["position"]), key=f"pos_{i}")
-                new_fit = col2.selectbox("")
+                new_fit = col2.selectbox("Fitness", FITNESS_LEVELS, index=FITNESS_LEVELS.index(player["fitness"]), key=f"fit_{i}")
+                
                     
             
