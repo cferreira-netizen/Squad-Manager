@@ -107,5 +107,6 @@ def page_squad():
                         "notes": notes.strip(),
                         form: 5.0
                     })
+                    save_json()
                     
             
