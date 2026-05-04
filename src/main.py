@@ -140,5 +140,13 @@ def page_squad():
                         "form": form_score,
                     })
                     save_json(SQUAD_FILE, st.session_state.squad)
+                    st.success("Saved!")
+                    st.rerun()
+                if c2.button("🗑️ Remove", key=f"del_{i}"):
+                    st.session_state.squad.pop(i)
+                    save_json(SQUAD_FILE, st.session_state.squad)
+                    st.rerun
+
+    # Page: Pick Lineup
                     
             
