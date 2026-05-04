@@ -173,6 +173,7 @@ def page_squad():
                 red_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
                 st.dataframe(rec_df, use_container_width=True, hide_index=True)
                 
+                
                              
                     
             
