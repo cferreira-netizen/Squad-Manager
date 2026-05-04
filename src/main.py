@@ -125,6 +125,12 @@ def page_squad():
                 new_pos = col1.selectbox("position", POSITIONS, index=POSITIONS.index(player["position"]), key=f"pos_{i}")
                 new_fit = col2.selectbox("Fitness", FITNESS_LEVELS, index=FITNESS_LEVELS.index(player["fitness"]), key=f"fit_{i}")
                 new_avail = col3.checkbox("Available", value=player["availability"], key=f"av_{i}")
-                new_notes = 
+                new_notes = st.text_area("Notes", value=player["notes"], height=60, key=f"notes_{i}")
+                form_score = calculate_form(player["name"])
+                st.captian(f"Form score: **{form_score}/10**")
+                st.progress(form_score / 10)
+
+                c1, c2 = st.columns(2)
+                if c1.button("")
                     
             
