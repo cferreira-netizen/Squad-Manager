@@ -189,6 +189,11 @@ def page_squad():
             lineup_df.columns = ["Player", "Position", "Fitness"]
             st.dataframe(lineup_df, use_container_width=True, hide_index=True)
     
+    # Page: Log Match
+
+    def page_log_match():
+        st.header("⚽ Log Match Result")
+        if not
 
 
                 
