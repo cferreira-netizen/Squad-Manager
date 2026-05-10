@@ -172,6 +172,9 @@ def page_squad():
                 rec_df=pd.DataFrame(scored)[["name", "position", "fitness", "score"]]
                 red_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
                 st.dataframe(rec_df, use_container_width=True, hide_index=True)
+
+        # Manual Selection
+        names = [p]
                 
                 
                              
