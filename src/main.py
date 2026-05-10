@@ -283,7 +283,7 @@ def page_stats():
     st.subheader("Player stats")
     player_stats = {}
     for _, row in df.iterrows():
-        for player not in row.get("squad", []):
+        for player in row.get("squad", []):
             if player not in player_stats:
                 player_stats[player] = {"apps": 0, "goals": 0, "assists": 0, "wins": 0}
             player_stats[player]["apps"] += 1
