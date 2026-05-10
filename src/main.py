@@ -147,158 +147,191 @@ def page_squad():
                     save_json(SQUAD_FILE, st.session_state.squad)
                     st.rerun
 
-    # Page: Pick Lineup
-    def page_lineup():
-        st.header("📋 Pick Lineup")
+# Page: Pick Lineup
+def page_lineup():
+    st.header("📋 Pick Lineup")
 
-        available = [p for p in st.session_state.squad if p.get("availability")]
-        if len(available) <11:
-            st.warning(f"You only have {len(available)} available players — need at least 11.")
-            return
-        
-        st.markdown("Select your starting 11 from available players:")
-
-        # Lineup recommender
-
-        with st.expander("🤖 Who should start? (recommender)", expanded=false):
-            st.caption("Players ranked by form score, position, and fitness.")
-            scored = []
-            for p in available:
-                form = calculate_form(p["name"])
-                fit_bonus = {"🟢 Fit": 2.0, "🟡 Slight knock": 0.5, "🔴 Injured": -5.0, "⚪ Unknown": 0.0}
-                total = form + fit_bonus.get(p["fitness"], 0)
-                scored.append({**p, "score": round(total,2)})
-                scored.sort(key=lambda x: x["score"], reverse=True)
-                rec_df=pd.DataFrame(scored)[["name", "position", "fitness", "score"]]
-                red_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
-                st.dataframe(rec_df, use_container_width=True, hide_index=True)
-
-        # Manual Selection
-        names = [p["name"] for p in available]
-        selected = st.multiselect("Starting XI", names, max_selections=11, default=names[:min(11,len(names))])
-        subs = st.muiltiselect("Substitutes", [n for n in names if n not in selected])
-
-        if st.button("✅ Confirm lineup") and len(selected) == 11:
-            st.session_state["current_lineup"] = selected
-            st.session_state["current_subs"] = subs
-            st.success("Lineup saved for this session!")
-        
-        if "current_lineup" in st.session_state:
-            st.subheader("Current Lineup")
-            lineup_df = pd.DataFrame([ p for p in st.session_state_state.squad if p["name"] in st.session_state["current_lineup"]])[["name", "position", "fitness"]]
-            lineup_df.columns = ["Player", "Position", "Fitness"]
-            st.dataframe(lineup_df, use_container_width=True, hide_index=True)
+    available = [p for p in st.session_state.squad if p.get("availability")]
+    if len(available) <11:
+        st.warning(f"You only have {len(available)} available players — need at least 11.")
+        return
     
-    # Page: Log Match
+    st.markdown("Select your starting 11 from available players:")
 
-    def page_log_match():
-        st.header("⚽ Log Match Result")
-        if not st.session_state.squad:
-            st.info("Add players first.")
-            return
-        
-        with st.form("match_form", clear_on_submit=True):
-            col1, col2 = st.columns(2)
-            opponet = col1.text_input("Opponet")
-            match_date = col2.date_input("Date", value=date.today())
-            col3, col4 = st.columns(2)
-            goals_for = col3.number_input("Goals for", min_value=0, max_value=20, step=1)
-            goals_against = col4.number_input("Goals against", min_value=0, max_value=20, step=1)
+    # Lineup recommender
 
-            all_names = [p["names"] for p in st.session_state.squad]
-            squad_played = st.multiselect("Player who played", all_names, default=st.session_state.get("current_lineup", []))
-            scorers = st.multiselect("Goal scorer(s)", squad_played)
-            assisters = st.multiselect("Assist(s)", squad_played)
+    with st.expander("🤖 Who should start? (recommender)", expanded=false):
+        st.caption("Players ranked by form score, position, and fitness.")
+        scored = []
+        for p in available:
+            form = calculate_form(p["name"])
+            fit_bonus = {"🟢 Fit": 2.0, "🟡 Slight knock": 0.5, "🔴 Injured": -5.0, "⚪ Unknown": 0.0}
+            total = form + fit_bonus.get(p["fitness"], 0)
+            scored.append({**p, "score": round(total,2)})
+            scored.sort(key=lambda x: x["score"], reverse=True)
+            rec_df=pd.DataFrame(scored)[["name", "position", "fitness", "score"]]
+            red_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
+            st.dataframe(rec_df, use_container_width=True, hide_index=True)
 
-            notes = st.text_area("Match notes", height=60)
-            submitted = st.form_submit_button("log result")
+    # Manual Selection
+    names = [p["name"] for p in available]
+    selected = st.multiselect("Starting XI", names, max_selections=11, default=names[:min(11,len(names))])
+    subs = st.muiltiselect("Substitutes", [n for n in names if n not in selected])
 
-        if submitted:
-            if not opponent.strip():
-                st.warning("Enter the opponets name.")
+    if st.button("✅ Confirm lineup") and len(selected) == 11:
+        st.session_state["current_lineup"] = selected
+        st.session_state["current_subs"] = subs
+        st.success("Lineup saved for this session!")
+    
+    if "current_lineup" in st.session_state:
+        st.subheader("Current Lineup")
+        lineup_df = pd.DataFrame([ p for p in st.session_state_state.squad if p["name"] in st.session_state["current_lineup"]])[["name", "position", "fitness"]]
+        lineup_df.columns = ["Player", "Position", "Fitness"]
+        st.dataframe(lineup_df, use_container_width=True, hide_index=True)
+
+# Page: Log Match
+
+def page_log_match():
+    st.header("⚽ Log Match Result")
+    if not st.session_state.squad:
+        st.info("Add players first.")
+        return
+    
+    with st.form("match_form", clear_on_submit=True):
+        col1, col2 = st.columns(2)
+        opponet = col1.text_input("Opponet")
+        match_date = col2.date_input("Date", value=date.today())
+        col3, col4 = st.columns(2)
+        goals_for = col3.number_input("Goals for", min_value=0, max_value=20, step=1)
+        goals_against = col4.number_input("Goals against", min_value=0, max_value=20, step=1)
+
+        all_names = [p["names"] for p in st.session_state.squad]
+        squad_played = st.multiselect("Player who played", all_names, default=st.session_state.get("current_lineup", []))
+        scorers = st.multiselect("Goal scorer(s)", squad_played)
+        assisters = st.multiselect("Assist(s)", squad_played)
+
+        notes = st.text_area("Match notes", height=60)
+        submitted = st.form_submit_button("log result")
+
+    if submitted:
+        if not opponent.strip():
+            st.warning("Enter the opponets name.")
+        else:
+            if goals_for > goals_against:
+                result = "W"
+            elif goals_for == goals_against:
+                result = "D"
             else:
-                if goals_for > goals_against:
-                    result = "W"
-                elif goals_for == goals_against:
-                    result = "D"
-                else:
-                    result = "L" 
-                
-                match = {
-                    "date": str(match_date),
-                    "opponent": opponent.strip(),
-                    "goals_for": int(goals_for),
-                    "goals_aganist": int(goals_aganist),
-                    "result": result,
-                    "squad": squad_played,
-                    "scorers": {p: scorers.count(p) for p in set(scorers)},
-                    "assisters": {p: assisters.count(p) for p in set(assisters)}
-                    "notes": notes.strip(),
-                }
-                st.session_state.matches.append(match)
-                save_json(MATCHES_FILE, st.session_state.matches)
-
-                badge = {"W": "🟢 Win", "D": "🟡 Draw", "L": "🔴 Loss"}[result]
-                st.success(f"Logged: {badge} vs {opponent.strip()} ({goals_for}-{goals_against})")
-                st.rerun()
-
-    # Season Stats
-
-    def page_stats():
-        st.header("📊 Season Stats")
-
-        matches = st.session_state.matches
-        if not matches:
-            st.info("No matches logged yet.")
-            return
-        
-        df = pd.DataFrame(matches)
-
-
-        # Season Summary
-
-        wins = (df["result"] == "W").sum()
-        draws = (df["result"] == "D").sum()
-        Losses = (df["result"] == "L").sum()
-        gf = df["goals_for"].sum()
-        ga = df["goals_against"].sum()
-        pts = wins * 3 + draws
-
-
-        c1, c2, c3, c4, c5 = st.columns(5)
-        c1.metric("Played", len(df))
-        c2.metric("points", pts)
-        c3.metric("W/D/L", f"{wins}/{draws}/{losses}")
-        c4.metric("Goals for", gf)
-        c5.metric("Goals against", ga)
-
-        # Match Log
-        st.subheader("Match Log")
-        display = df[["date", "opponent", "goals_for", "goals_against", "result", "notes"]].copy()
-        display.columns = ["Date", "Opponent", "GF", "GA", "Result", "Notes"]
-        display["Result"] = display["Result"].map({"W": "🟢 W", "D": "🟡 D", "L": "🔴 L"})
-        st.dataframe(display.sort_values("Date", ascending=False), use_container_width=True, hide_index=True)
-
-        # Player stats
-        st.subheader("Player stats")
-        player_stats = {}
-        for _, row in df.iterrows():
-            for player not in row.get("squad", []):
-                if player not in player_stats:
-                    player_stats[player] = {"apps": 0, "goals": 0, "assists": 0, "wins": 0}
-                player_stats[player]["apps"] += 1
-            player_stats[player]["goals"]   += row.get("scorers", {}).get(player, 0)
-            player_stats[player]["assists"]  += row.get("assisters", {}).get(player, 0)
-            if row["result"] == "W":
-                player_stats[player]["wins"] += 1
-        
-        if player_stats
-
-        
-
-
-                
-                
-                             
-                    
+                result = "L" 
             
+            match = {
+                "date": str(match_date),
+                "opponent": opponent.strip(),
+                "goals_for": int(goals_for),
+                "goals_aganist": int(goals_aganist),
+                "result": result,
+                "squad": squad_played,
+                "scorers": {p: scorers.count(p) for p in set(scorers)},
+                "assisters": {p: assisters.count(p) for p in set(assisters)},
+                "notes": notes.strip(),
+            }
+            st.session_state.matches.append(match)
+            save_json(MATCHES_FILE, st.session_state.matches)
+
+            badge = {"W": "🟢 Win", "D": "🟡 Draw", "L": "🔴 Loss"}[result]
+            st.success(f"Logged: {badge} vs {opponent.strip()} ({goals_for}-{goals_against})")
+            st.rerun()
+
+# Season Stats
+
+def page_stats():
+    st.header("📊 Season Stats")
+
+    matches = st.session_state.matches
+    if not matches:
+        st.info("No matches logged yet.")
+        return
+
+    df = pd.DataFrame(matches)
+
+
+    # Season Summary
+
+    wins = (df["result"] == "W").sum()
+    draws = (df["result"] == "D").sum()
+    Losses = (df["result"] == "L").sum()
+    gf = df["goals_for"].sum()
+    ga = df["goals_against"].sum()
+    pts = wins * 3 + draws
+
+
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Played", len(df))
+    c2.metric("points", pts)
+    c3.metric("W/D/L", f"{wins}/{draws}/{losses}")
+    c4.metric("Goals for", gf)
+    c5.metric("Goals against", ga)
+
+    # Match Log
+    st.subheader("Match Log")
+    display = df[["date", "opponent", "goals_for", "goals_against", "result", "notes"]].copy()
+    display.columns = ["Date", "Opponent", "GF", "GA", "Result", "Notes"]
+    display["Result"] = display["Result"].map({"W": "🟢 W", "D": "🟡 D", "L": "🔴 L"})
+    st.dataframe(display.sort_values("Date", ascending=False), use_container_width=True, hide_index=True)
+
+    # Player stats
+    st.subheader("Player stats")
+    player_stats = {}
+    for _, row in df.iterrows():
+        for player not in row.get("squad", []):
+            if player not in player_stats:
+                player_stats[player] = {"apps": 0, "goals": 0, "assists": 0, "wins": 0}
+            player_stats[player]["apps"] += 1
+        player_stats[player]["goals"]   += row.get("scorers", {}).get(player, 0)
+        player_stats[player]["assists"]  += row.get("assisters", {}).get(player, 0)
+        if row["result"] == "W":
+            player_stats[player]["wins"] += 1
+    
+    if player_stats:
+        stats_df = pd.DataFrame(player_status).T.reset_index()
+        stats_df.columns = ["player", "Apps", "Goals", "Assists", "Wins"]
+        stats_df = stats_df.sort_values("Goals", ascending=False)
+        st.dataframe(stats_df, use_container_width=True, hide_index=True)
+    
+    # Delete Match
+    with st.expander("🗑️ Delete a match"):
+        labels = [f"{m['date']} vs {m['opponent']}" for m in matches]
+        to_del = st.selectbox("Select match to delete", labels)
+        if st.button("Delete match"):
+            idx = labels.index(to_del)
+            st.session_state.matches.pop(idx)
+            save_json(MATCHES_FILE, st.session_state.matches)
+            st.rerun()
+
+def main():
+    st.set_page_config(page_title="Squad Manager", page_icon="⚽", layout="wide")
+    init_state()
+
+    st.title("⚽ Squad Manager")
+    st.captian("Track your squad, pick lineups, log results, and see season stats.")
+
+
+    tab1, tab2, tab3, tab4 = st.tabs(["Squad", "Pick Lineup", "Log Match", "Season Stats"])
+    with tab1: page_squad()
+    with tab2: page_lineup()
+    with tab3: page_log_match()
+    with tab4: page_stats()
+
+if __name__ == "__main__":
+    main()
+
+
+
+    
+
+
+            
+            
+                            
+                
+        
