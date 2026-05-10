@@ -224,7 +224,13 @@ def page_squad():
                 else:
                     result = "L" 
                 
-                
+                match = {
+                    "date": str(match_date),
+                    "opponent": opponent.strip(),
+                    "goals_for": int(goals_for),
+                    "goals_aganist": int(goals_aganist),
+                    
+                }
         
 
 
