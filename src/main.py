@@ -174,7 +174,11 @@ def page_squad():
                 st.dataframe(rec_df, use_container_width=True, hide_index=True)
 
         # Manual Selection
-        names = [p]
+        names = [p["name"] for p in available]
+        selected = st.multiselect("Starting XI", names, max_selections=11, default=names[:min(11,len(names))])
+        subs = st.muiltiselect("Substitutes", [n for n in names if n not in selected])
+
+        
                 
                 
                              
