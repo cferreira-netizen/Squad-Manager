@@ -193,7 +193,13 @@ def page_squad():
 
     def page_log_match():
         st.header("⚽ Log Match Result")
-        if not
+        if not st.session_state.squad:
+            st.info("Add players first.")
+            return
+        
+        with st.form("match_form", clear_on_submit=True):
+            col1, col2 = st.columns(2)
+            opponet = col1.text_input("Opponet")
 
 
                 
