@@ -202,6 +202,9 @@ def page_squad():
             opponet = col1.text_input("Opponet")
             match_date = col2.date_input("Date", value=date.today())
             col3, col4 = st.columns(2)
+            goals_for = col3.number_input("Goals for", min_value=0, max_value=20, step=1)
+            goals_against = col4.number_input("Goals against", min_value=0, max_value=20, step=1)
+
             
 
 
