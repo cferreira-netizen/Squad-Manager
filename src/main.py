@@ -178,7 +178,9 @@ def page_squad():
         selected = st.multiselect("Starting XI", names, max_selections=11, default=names[:min(11,len(names))])
         subs = st.muiltiselect("Substitutes", [n for n in names if n not in selected])
 
-        
+        if st.button("")
+
+
                 
                 
                              
