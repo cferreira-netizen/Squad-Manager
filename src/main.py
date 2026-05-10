@@ -183,7 +183,9 @@ def page_squad():
             st.session_state["current_subs"] = subs
             st.success("Lineup saved for this session!")
         
-        
+        if "current_lineup" in st.session_state:
+            st.subheader("Current Lineup")
+            lineup_df = pd.DataFrame
 
 
                 
