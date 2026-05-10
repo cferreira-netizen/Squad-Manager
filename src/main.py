@@ -210,6 +210,12 @@ def page_squad():
             scorers = st.multiselect("Goal scorer(s)", squad_played)
             assisters = st.multiselect("Assist(s)", squad_played)
 
+            notes = st.text_area("Match notes", height=60)
+            submitted = st.form_submit_button("log result")
+
+        if submitted:
+            if not opponent
+
 
                 
                 
