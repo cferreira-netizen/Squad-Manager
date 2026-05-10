@@ -313,7 +313,7 @@ def main():
     init_state()
 
     st.title("⚽ Squad Manager")
-    st.captian("Track your squad, pick lineups, log results, and see season stats.")
+    st.caption("Track your squad, pick lineups, log results, and see season stats.")
 
 
     tab1, tab2, tab3, tab4 = st.tabs(["Squad", "Pick Lineup", "Log Match", "Season Stats"])
