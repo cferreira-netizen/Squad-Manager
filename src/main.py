@@ -229,6 +229,9 @@ def page_squad():
                     "opponent": opponent.strip(),
                     "goals_for": int(goals_for),
                     "goals_aganist": int(goals_aganist),
+                    "result": result,
+                    "squad": squad_played,
+                    "scorers": {p: scorers.count(p) for p in set(scorers)},
                     
                 }
         
