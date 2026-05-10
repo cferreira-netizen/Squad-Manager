@@ -185,7 +185,7 @@ def page_squad():
         
         if "current_lineup" in st.session_state:
             st.subheader("Current Lineup")
-            lineup_df = pd.DataFrame([ p for p in st.session_state_state.squad ])
+            lineup_df = pd.DataFrame([ p for p in st.session_state_state.squad if p["name"] in st.session_state["current_lineup"]])
 
 
                 
