@@ -214,7 +214,18 @@ def page_squad():
             submitted = st.form_submit_button("log result")
 
         if submitted:
-            if not opponent
+            if not opponent.strip():
+                st.warning("Enter the opponets name.")
+            else:
+                if goals_for > goals_against:
+                    result = "W"
+                elif goals_for == goals_against:
+                    result = "D"
+                else:
+                    result = "L" 
+                
+                
+        
 
 
                 
