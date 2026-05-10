@@ -105,7 +105,7 @@ def page_squad():
                         "fitness": fitness,
                         "availability": availability,
                         "notes": notes.strip(),
-                        form: 5.0
+                        "form": 5.0
                     })
                     save_json(SQUAD_FILE, st.session_state.squad)
                     st.success(f"ADDED {name.strip()}!")
@@ -120,14 +120,14 @@ def page_squad():
 
         st.subheader(f"Roster ({len(df)} players)")
         for i, player in enumerate(st.session_state.squad):
-            with st.expander(f"{player['name']}  .   {player['postion']}   .   {player['fitness']}"):
+            with st.expander(f"{player['name']}  .   {player['position']}   .   {player['fitness']}"):
                 col1, col2, col3 = st.columns([2, 2, 1])
                 new_pos = col1.selectbox("position", POSITIONS, index=POSITIONS.index(player["position"]), key=f"pos_{i}")
                 new_fit = col2.selectbox("Fitness", FITNESS_LEVELS, index=FITNESS_LEVELS.index(player["fitness"]), key=f"fit_{i}")
                 new_avail = col3.checkbox("Available", value=player["availability"], key=f"av_{i}")
                 new_notes = st.text_area("Notes", value=player["notes"], height=60, key=f"notes_{i}")
                 form_score = calculate_form(player["name"])
-                st.captian(f"Form score: **{form_score}/10**")
+                st.caption(f"Form score: **{form_score}/10**")
                 st.progress(form_score / 10)
 
                 c1, c2 = st.columns(2)
@@ -145,7 +145,7 @@ def page_squad():
                 if c2.button("🗑️ Remove", key=f"del_{i}"):
                     st.session_state.squad.pop(i)
                     save_json(SQUAD_FILE, st.session_state.squad)
-                    st.rerun
+                    st.rerun()
 
 # Page: Pick Lineup
 def page_lineup():
