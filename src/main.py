@@ -206,7 +206,7 @@ def page_squad():
             goals_against = col4.number_input("Goals against", min_value=0, max_value=20, step=1)
 
             all_names = [p["names"] for p in st.session_state.squad]
-            squad_played = st.multiselect
+            squad_played = st.multiselect("")
 
 
                 
