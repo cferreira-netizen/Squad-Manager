@@ -202,6 +202,7 @@ def page_squad():
             opponet = col1.text_input("Opponet")
             match_date = col2.date_input("Date", value=date.today())
             col3, col4 = st.columns(2)
+            
 
 
                 
