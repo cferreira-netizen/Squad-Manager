@@ -180,7 +180,10 @@ def page_squad():
 
         if st.button("✅ Confirm lineup") and len(selected) == 11:
             st.session_state["current_lineup"] = selected
-            st.session_state["current_subs"]
+            st.session_state["current_subs"] = subs
+            st.success("Lineup saved for this session!")
+        
+        
 
 
                 
