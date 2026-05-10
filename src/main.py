@@ -200,6 +200,8 @@ def page_squad():
         with st.form("match_form", clear_on_submit=True):
             col1, col2 = st.columns(2)
             opponet = col1.text_input("Opponet")
+            match_date = col2.date_input("Date", value=date.today())
+            
 
 
                 
