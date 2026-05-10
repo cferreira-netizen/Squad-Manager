@@ -232,8 +232,68 @@ def page_squad():
                     "result": result,
                     "squad": squad_played,
                     "scorers": {p: scorers.count(p) for p in set(scorers)},
-                    
+                    "assisters": {p: assisters.count(p) for p in set(assisters)}
+                    "notes": notes.strip(),
                 }
+                st.session_state.matches.append(match)
+                save_json(MATCHES_FILE, st.session_state.matches)
+
+                badge = {"W": "🟢 Win", "D": "🟡 Draw", "L": "🔴 Loss"}[result]
+                st.success(f"Logged: {badge} vs {opponent.strip()} ({goals_for}-{goals_against})")
+                st.rerun()
+
+    # Season Stats
+
+    def page_stats():
+        st.header("📊 Season Stats")
+
+        matches = st.session_state.matches
+        if not matches:
+            st.info("No matches logged yet.")
+            return
+        
+        df = pd.DataFrame(matches)
+
+
+        # Season Summary
+
+        wins = (df["result"] == "W").sum()
+        draws = (df["result"] == "D").sum()
+        Losses = (df["result"] == "L").sum()
+        gf = df["goals_for"].sum()
+        ga = df["goals_against"].sum()
+        pts = wins * 3 + draws
+
+
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric("Played", len(df))
+        c2.metric("points", pts)
+        c3.metric("W/D/L", f"{wins}/{draws}/{losses}")
+        c4.metric("Goals for", gf)
+        c5.metric("Goals against", ga)
+
+        # Match Log
+        st.subheader("Match Log")
+        display = df[["date", "opponent", "goals_for", "goals_against", "result", "notes"]].copy()
+        display.columns = ["Date", "Opponent", "GF", "GA", "Result", "Notes"]
+        display["Result"] = display["Result"].map({"W": "🟢 W", "D": "🟡 D", "L": "🔴 L"})
+        st.dataframe(display.sort_values("Date", ascending=False), use_container_width=True, hide_index=True)
+
+        # Player stats
+        st.subheader("Player stats")
+        player_stats = {}
+        for _, row in df.iterrows():
+            for player not in row.get("squad", []):
+                if player not in player_stats:
+                    player_stats[player] = {"apps": 0, "goals": 0, "assists": 0, "wins": 0}
+                player_stats[player]["apps"] += 1
+            player_stats[player]["goals"]   += row.get("scorers", {}).get(player, 0)
+            player_stats[player]["assists"]  += row.get("assisters", {}).get(player, 0)
+            if row["result"] == "W":
+                player_stats[player]["wins"] += 1
+        
+        if player_stats
+
         
 
 
