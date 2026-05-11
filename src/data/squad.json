@@ -110,5 +110,21 @@
     "availability": true,
     "notes": "Strong player",
     "form": 5.0
+  },
+  {
+    "name": "L",
+    "position": "CDM",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "TT",
+    "position": "CM",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
   }
 ]

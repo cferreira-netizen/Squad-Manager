@@ -24,5 +24,61 @@
     "scorers": {},
     "assisters": {},
     "notes": ""
+  },
+  {
+    "date": "2026-05-11",
+    "opponent": "Copa",
+    "goals_for": 4,
+    "goals_against": 1,
+    "result": "W",
+    "squad": [
+      "Cristian",
+      "Cris",
+      "MANS",
+      "p",
+      "n",
+      "s",
+      "B",
+      "D",
+      "I",
+      "A",
+      "r"
+    ],
+    "scorers": {
+      "s": 1,
+      "Cristian": 1
+    },
+    "assisters": {
+      "MANS": 1,
+      "n": 1
+    },
+    "notes": "Great Game"
+  },
+  {
+    "date": "2026-05-11",
+    "opponent": "Madrid",
+    "goals_for": 1,
+    "goals_against": 4,
+    "result": "L",
+    "squad": [
+      "Cristian",
+      "Cris",
+      "MANS",
+      "p",
+      "n",
+      "s",
+      "B",
+      "D",
+      "I",
+      "A",
+      "r"
+    ],
+    "scorers": {
+      "p": 1
+    },
+    "assisters": {
+      "Cris": 1
+    },
+    "notes": "Bad Game"
   }
 ]
