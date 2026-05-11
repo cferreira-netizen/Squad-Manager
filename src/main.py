@@ -199,7 +199,7 @@ def page_log_match():
     
     with st.form("match_form", clear_on_submit=True):
         col1, col2 = st.columns(2)
-        opponet = col1.text_input("Opponet")
+        opponet = col1.text_input("Opponent")
         match_date = col2.date_input("Date", value=date.today())
         col3, col4 = st.columns(2)
         goals_for = col3.number_input("Goals for", min_value=0, max_value=20, step=1)
