@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Cristian",
+    "position": "GK",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "Cris",
+    "position": "CB",
+    "fitness": "\ud83d\udfe1 Slight knock",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "LIp",
+    "position": "CAM",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": false,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "MANS",
+    "position": "ST",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "Hola",
+    "form": 5.0
+  },
+  {
+    "name": "p",
+    "position": "ST",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "n",
+    "position": "LB",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "s",
+    "position": "RB",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "B",
+    "position": "CAM",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "D",
+    "position": "LW",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "I",
+    "position": "RW",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "A",
+    "position": "ST",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "r",
+    "position": "CDM",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  },
+  {
+    "name": "t",
+    "position": "GK",
+    "fitness": "\ud83d\udfe2 Fit",
+    "availability": true,
+    "notes": "",
+    "form": 5.0
+  }
+]
