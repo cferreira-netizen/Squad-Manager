@@ -170,13 +170,13 @@ def page_lineup():
             scored.append({**p, "score": round(total,2)})
             scored.sort(key=lambda x: x["score"], reverse=True)
             rec_df=pd.DataFrame(scored)[["name", "position", "fitness", "score"]]
-            red_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
+            rec_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
             st.dataframe(rec_df, use_container_width=True, hide_index=True)
 
     # Manual Selection
     names = [p["name"] for p in available]
     selected = st.multiselect("Starting XI", names, max_selections=11, default=names[:min(11,len(names))])
-    subs = st.muiltiselect("Substitutes", [n for n in names if n not in selected])
+    subs = st.multiselect("Substitutes", [n for n in names if n not in selected])
 
     if st.button("✅ Confirm lineup") and len(selected) == 11:
         st.session_state["current_lineup"] = selected
