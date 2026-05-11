@@ -160,7 +160,7 @@ def page_lineup():
 
     # Lineup recommender
 
-    with st.expander("🤖 Who should start? (recommender)", expanded=false):
+    with st.expander("🤖 Who should start? (recommender)", expanded=False):
         st.caption("Players ranked by form score, position, and fitness.")
         scored = []
         for p in available:
