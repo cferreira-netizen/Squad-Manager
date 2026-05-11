@@ -206,8 +206,8 @@ def page_log_match():
         st.write(st.session_state.squad)
         all_names = [p["name"] for p in st.session_state.squad]
         squad_played = st.multiselect("Player who played", all_names, default=st.session_state.get("current_lineup", []))
-        scorers = st.multiselect("Goal scorer(s)", squad_played)
-        assisters = st.multiselect("Assist(s)", squad_played)
+        scorers = st.multiselect("Goal scorer(s)", all_names)
+        assisters = st.multiselect("Assist(s)", all_names)
 
         notes = st.text_area("Match notes", height=60)
         submitted = st.form_submit_button("log result")
