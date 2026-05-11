@@ -205,7 +205,7 @@ def page_log_match():
         goals_for = col3.number_input("Goals for", min_value=0, max_value=20, step=1)
         goals_against = col4.number_input("Goals against", min_value=0, max_value=20, step=1)
 
-        all_names = [p["names"] for p in st.session_state.squad]
+        all_names = [p["name"] for p in st.session_state.squad]
         squad_played = st.multiselect("Player who played", all_names, default=st.session_state.get("current_lineup", []))
         scorers = st.multiselect("Goal scorer(s)", squad_played)
         assisters = st.multiselect("Assist(s)", squad_played)
