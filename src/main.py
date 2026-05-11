@@ -62,16 +62,14 @@ def calculate_form(player_name: str):
     total = 0.0
     for match in revelant:
         pts = 0
-        for match in revelant:
-            pts = 0
-            if match.get("result") == "W":
-                pts += 3
-            elif match.get("result") == "D":
-                pts += 1
-            goals = match.get("scorers",{}).get(player_name, 0)
-            assists = match.get("assisters",{}).get(player_name, 0)
-            pts += goals * 1.5 + assists * 0.75
-            total += pts
+        if match.get("result") == "W":
+            pts += 3
+        elif match.get("result") == "D":
+            pts += 1
+        goals = match.get("scorers",{}).get(player_name, 0)
+        assists = match.get("assisters",{}).get(player_name, 0)
+        pts += goals * 1.5 + assists * 0.75
+        total += pts
         
     # Normalize to 0-10
     max_possible = len(revelant) * (3 + 3 * 1.5 + 3 * 0.75)
@@ -204,7 +202,6 @@ def page_log_match():
         col3, col4 = st.columns(2)
         goals_for = col3.number_input("Goals for", min_value=0, max_value=20, step=1)
         goals_against = col4.number_input("Goals against", min_value=0, max_value=20, step=1)
-
         all_names = [p["name"] for p in st.session_state.squad]
         squad_played = st.multiselect("Player who played", all_names, default=st.session_state.get("current_lineup", []))
         scorers = st.multiselect("Goal scorer(s)", squad_played)
@@ -228,7 +225,7 @@ def page_log_match():
                 "date": str(match_date),
                 "opponent": opponent.strip(),
                 "goals_for": int(goals_for),
-                "goals_aganist": int(goals_aganist),
+                "goals_against": int(goals_against),                
                 "result": result,
                 "squad": squad_played,
                 "scorers": {p: scorers.count(p) for p in set(scorers)},
@@ -259,7 +256,7 @@ def page_stats():
 
     wins = (df["result"] == "W").sum()
     draws = (df["result"] == "D").sum()
-    Losses = (df["result"] == "L").sum()
+    losses = (df["result"] == "L").sum()
     gf = df["goals_for"].sum()
     ga = df["goals_against"].sum()
     pts = wins * 3 + draws
@@ -287,13 +284,13 @@ def page_stats():
             if player not in player_stats:
                 player_stats[player] = {"apps": 0, "goals": 0, "assists": 0, "wins": 0}
             player_stats[player]["apps"] += 1
-        player_stats[player]["goals"]   += row.get("scorers", {}).get(player, 0)
-        player_stats[player]["assists"]  += row.get("assisters", {}).get(player, 0)
-        if row["result"] == "W":
-            player_stats[player]["wins"] += 1
+            player_stats[player]["goals"]   += row.get("scorers", {}).get(player, 0)
+            player_stats[player]["assists"]  += row.get("assisters", {}).get(player, 0)
+            if row["result"] == "W":
+                player_stats[player]["wins"] += 1
     
     if player_stats:
-        stats_df = pd.DataFrame(player_status).T.reset_index()
+        stats_df = pd.DataFrame(player_stats).T.reset_index()
         stats_df.columns = ["player", "Apps", "Goals", "Assists", "Wins"]
         stats_df = stats_df.sort_values("Goals", ascending=False)
         st.dataframe(stats_df, use_container_width=True, hide_index=True)
