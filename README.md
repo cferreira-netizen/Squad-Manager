@@ -32,14 +32,14 @@ streamlit run dist/main.py
 
 ```
 squad-manager/
-├── README.md           # This file
-├── demo.mp4            # Short app demo (added before final submission)
-├── src/                # Development code (work here)
+├── README.md           
+├── demo.mp4            
+├── src/                 
 │   ├── data/
-│   │   ├── squad.json      # Saved player roster
-│   │   └── matches.json    # Saved match history
-│   └── main.py         # Main Streamlit app
-└── dist/               # Production copy (graded — only copy here when stable)
+│   │   ├── squad.json      
+│   │   └── matches.json    
+│   └── main.py         
+└── dist/               
     ├── data/
     │   ├── squad.json
     │   └── matches.json
