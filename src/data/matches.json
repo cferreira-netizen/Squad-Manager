@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "date": "2026-05-11",
+    "opponent": "Copa fc",
+    "goals_for": 5,
+    "goals_against": 2,
+    "result": "W",
+    "squad": [
+      "Cristian",
+      "Scott",
+      "LIp",
+      "MANS",
+      "p",
+      "n",
+      "s",
+      "B",
+      "D",
+      "I",
+      "A",
+      "r",
+      "t",
+      "Cris"
+    ],
+    "scorers": {},
+    "assisters": {},
+    "notes": ""
+  }
+]
