@@ -166,10 +166,11 @@ def page_lineup():
             fit_bonus = {"🟢 Fit": 2.0, "🟡 Slight knock": 0.5, "🔴 Injured": -5.0, "⚪ Unknown": 0.0}
             total = form + fit_bonus.get(p["fitness"], 0)
             scored.append({**p, "score": round(total,2)})
-            scored.sort(key=lambda x: x["score"], reverse=True)
-            rec_df=pd.DataFrame(scored)[["name", "position", "fitness", "score"]]
-            rec_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
-            st.dataframe(rec_df, use_container_width=True, hide_index=True)
+
+        scored.sort(key=lambda x: x["score"], reverse=True)
+        rec_df=pd.DataFrame(scored)[["name", "position", "fitness", "score"]]
+        rec_df.columns = ["Player", "Position", "Fitness", "Recommendation Score"]
+        st.dataframe(rec_df, use_container_width=True, hide_index=True)
 
     # Manual Selection
     names = [p["name"] for p in available]
