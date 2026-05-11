@@ -102,5 +102,13 @@
     "availability": true,
     "notes": "",
     "form": 5.0
+  },
+  {
+    "name": "Scott",
+    "position": "CDM",
+    "fitness": "\ud83d\udfe1 Slight knock",
+    "availability": true,
+    "notes": "Strong player",
+    "form": 5.0
   }
 ]
